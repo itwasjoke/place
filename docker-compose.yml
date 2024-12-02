@@ -1,0 +1,29 @@
+version: "3.1"
+
+volumes:
+  pg_place:
+
+services:
+  place_db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=placeAliceAndrey
+      - POSTGRES_PASSWORD=cheburashka141024
+      - POSTGRES_DB=place
+    volumes:
+      - pg_place:/var/lib/postgresql/data
+    ports:
+      - "14101:5432"
+  place_app:
+    restart: always
+    build: .
+    ports:
+      - "14100:37000"
+    depends_on:
+      - place_db
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://place_db:5432/place"
+      SPRING_DATASOURCE_USERNAME: placeAliceAndrey
+      SPRING_DATASOURCE_PASSWORD: cheburashka141024
+      TOKEN_SIGNING_KEY: 53A73E5F1C4E0A2D3B5F2D784E6A1B423D6F247D1F6E5C3A596D635A75327855

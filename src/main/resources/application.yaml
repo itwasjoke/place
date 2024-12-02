@@ -1,0 +1,26 @@
+spring:
+  application:
+      name: place
+  main:
+    allow-circular-references: true
+    allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:postgresql://localhost:37001/effective
+    username: admin
+    password: admin
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: create-drop
+    generate-ddl: true
+server:
+  port: 37000
+
+token:
+  signing:
+    key: admin
+
+springdoc:
+  swagger-ui:
+    default-model-expand-depth: -1
+    disable-swagger-default-url: true
